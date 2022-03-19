@@ -10,7 +10,7 @@ tile2.addEventListener('click', function select() {
 })
 
 function handleClick(kind) {
-    tile1.innerHTML = 'vs Human'
+    tile1.innerHTML = 'vs Player'
     tile2.innerHTML = 'vs Computer'
     tile1.style.backgroundColor = 'black'
     tile2.style.backgroundColor = 'black'
