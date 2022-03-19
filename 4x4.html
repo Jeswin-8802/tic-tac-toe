@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">    
+    <title>4 x 4</title>
+    <style>
+       /* remove border for edges */
+       .cell:nth-child(1), .cell:nth-child(2), .cell:nth-child(3), .cell:nth-child(4) {
+           border-top: none;
+       }
+
+       .cell:nth-child(1), .cell:nth-child(5), .cell:nth-child(9), .cell:nth-child(13) {
+           border-left: none;
+       }
+
+       .cell:nth-child(4), .cell:nth-child(8), .cell:nth-child(12), .cell:nth-child(16) {
+           border-right: none;
+       }
+
+       .cell:nth-child(13), .cell:nth-child(14), .cell:nth-child(15), .cell:nth-child(16) {
+           border-bottom: none;
+       }
+    </style>
+    <script>
+        const WINNING_COMBINATIONS = [
+            [0, 1, 2, 3],
+            [4, 5, 6, 7],
+            [8, 9, 10, 11],
+            [12, 13, 14, 15],
+            [0, 4, 8, 12],
+            [1, 5, 9, 13],
+            [2, 6, 10, 14],
+            [3, 7, 11, 15],
+            [0, 5, 10, 15],
+            [3, 6, 9, 12]
+        ]
+    </script>
+</head>
+<body>
+    <div class="board" id="board" style = "grid-template-columns: repeat(4, auto)">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+    </div>
+    <div class="winning-message" id="winningMessage">
+        <div id="winningMessageText" data-winning-message-text></div>
+        <button id="restartButton">Restart</button>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

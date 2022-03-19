@@ -1,0 +1,115 @@
+html, body {
+    width: 100%;
+    height:100%;
+    overflow: hidden;
+}
+  
+body {
+    background: linear-gradient(-35deg, #868686, #b4a8a8, #78b0fa, #b0ff8b);
+    background-size: 400% 400%;
+    animation: gradient 30s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+:root {
+    --cell-size: 130px;    
+    --color: #999999; /* for hover */
+    --color-set: #7effce; /* when set */
+    --l: 7px; /* X line-width */
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.cell {
+	width: var(--cell-size);
+	height: var(--cell-size);
+	border: 2px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+}
+
+.cell.X, .cell.O {
+	cursor: not-allowed;
+}
+
+.board.X .cell:not(.O):not(.X):hover {
+	background: linear-gradient(to top right, transparent calc(50% - var(--l) / 2), var(--color) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2)),
+				linear-gradient(to bottom right, transparent calc(50% - var(--l) / 2), var(--color) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2));
+	background-size: 75% 75%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.cell:not(.O).X {
+	background: linear-gradient(to top right, transparent calc(50% - var(--l) / 2), var(--color-set) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2)),
+				linear-gradient(to bottom right, transparent calc(50% - var(--l) / 2), var(--color-set) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2));
+	background-size: 75% 75%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.board.O .cell:not(.O):not(.X):hover {	
+	background: radial-gradient(var(--color) 60%, transparent 60%);
+}
+
+.cell:not(.X).O {
+	background: radial-gradient(var(--color-set) 60%, transparent 20%);
+}
+
+.winning-message {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--color-set);
+	justify-content: center;
+	align-items: center;
+	color: rgb(0, 146, 110);
+	font-size: 5rem;
+	font-family: 'Courier New', Courier, monospace;
+	flex-direction: column;
+}
+
+.winning-message button {
+	border-radius: 15px;
+	font-size: 3rem;
+	background-color: #00e2aa;
+	color: #ffffff;
+	border: 1px solid var(--color-set);
+	padding: .25em .5em;
+	cursor: pointer;
+}
+
+.winning-message button:hover {
+	background-color: var(--color-set);
+	color: rgb(0, 77, 38);
+	border-color: rgb(0, 77, 38);
+}
+
+.winning-message.show {
+	display: flex;
+}
