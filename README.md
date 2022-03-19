@@ -11,7 +11,7 @@
  
  ![Screenshot 2022-03-19 193310](https://user-images.githubusercontent.com/84562594/159124192-f9b23a0e-709a-4f88-a62c-d20555ebb471.png)
  
- I tried to make the game a little different from how it usually is by adding a `4 x 4` version of it. The only difference being you need to get 4 consecutive `Xs` or `Os` horizontally, vertically or diagonally.
+ I tried to make the game a little different by adding a `4 x 4` version of it. The only difference being you need to get 4 consecutive `Xs` or `Os` horizontally, vertically or diagonally.
  
  `you can find the app here 👉` https://jeswin-8802.github.io/tic-tac-toe/
  
