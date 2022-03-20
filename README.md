@@ -22,5 +22,5 @@
 ## References
 
 * https://codepen.io/ (*dynamic background css*)
-* https://www.codebrainer.com/blog/tic-tac-toe-javascript-game (*this article explains the step by step creation of a basic tic tac toe game and I have refrerenced it to create my app*)
+* https://www.codebrainer.com/blog/tic-tac-toe-javascript-game (*this article explains the step by step creation of a basic tic tac toe game*)
 * https://playtictactoe.org/
