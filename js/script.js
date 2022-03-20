@@ -9,37 +9,17 @@ let OsTurn
 
 let ai = sessionStorage.getItem("first"), kind = sessionStorage.getItem("second")
 
-function start() {
-  if(ai == 'true') {
-    startGame_CvP()
-  } else {
-    startGame_PvP()
-  }
-}
-
 start()
 
 restartButton.addEventListener('click', start)
 
-function startGame_CvP() {
+function start() {
   OsTurn = false
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
     cell.classList.remove(O_CLASS)
-    cell.removeEventListener('click', handleClick2)
-    cell.addEventListener('click', handleClick2, { once: true })
-  })
-  setBoardHoverClass()
-  winningMessageElement.classList.remove('show')
-}
-
-function startGame_PvP() {
-  OsTurn = false
-  cellElements.forEach(cell => {
-    cell.classList.remove(X_CLASS)
-    cell.classList.remove(O_CLASS)
-    cell.removeEventListener('click', handleClick1)
-    cell.addEventListener('click', handleClick1, { once: true })
+    cell.removeEventListener('click', ai == 'true' ? handleClick2 : handleClick1)
+    cell.addEventListener('click', ai == 'true' ? handleClick2 : handleClick1, { once: true })
   })
   setBoardHoverClass()
   winningMessageElement.classList.remove('show')
@@ -48,7 +28,7 @@ function startGame_PvP() {
 function handleClick1(e) {
   const cell = e.target
   const currentClass = OsTurn ? O_CLASS : X_CLASS
-  placeMark(cell, currentClass)
+  cell.classList.add(currentClass)
   if (checkWin(currentClass)) {
     endGame(false)
   } else if (isDraw()) {
@@ -61,25 +41,26 @@ function handleClick1(e) {
 
 function handleClick2(e) {
   const cell = e.target
-  const currentClass = OsTurn ? O_CLASS : X_CLASS
   if(!OsTurn)
-    placeMark(cell, X_CLASS)
-  if (checkWin(currentClass)) {
+    cell.classList.add(X_CLASS)
+  if (checkWin(X_CLASS)) {
     endGame(false)
   } else if (isDraw()) {
     endGame(true)
   } else {
     swapTurns()
-    setBoardHoverClass()
-    let place = false, skip = false, i = 0
+    let place = false, skip = false, i = 0, draw = true
     cellElements.forEach(cell => {
       if(skip)
         return
       if(!cell.classList.contains(X_CLASS) && !cell.classList.contains(O_CLASS)) {
-        placeMark(cell, O_CLASS)
-        if(checkWin(O_CLASS))
+        cell.classList.add(O_CLASS)
+        if(checkWin(O_CLASS)) {
           endGame(false)
-        else {
+          skip = true
+          draw = false
+          return
+        } else {
           if(kind == '3x3' ? i == 4 : ([5, 6, 9, 10].includes(i))) {
             place = true
             skip = true
@@ -87,18 +68,17 @@ function handleClick2(e) {
             return
           }
           cell.classList.remove(O_CLASS)
-          placeMark(cell, X_CLASS)          
+          cell.classList.add(X_CLASS)          
           if(checkWin(X_CLASS)) {
             place = true
             cell.classList.remove(X_CLASS)
-            placeMark(cell, O_CLASS)
+            cell.classList.add(O_CLASS)
             cell.removeEventListener('click', handleClick2)      
             skip = true
             return
           }
           cell.classList.remove(X_CLASS)
-        }
-        cell.classList.remove(O_CLASS)
+        }        
       }
       i++
     })
@@ -112,7 +92,7 @@ function handleClick2(e) {
           return
         if(arr1.includes(i)  && (!cell.classList.contains(X_CLASS) && !cell.classList.contains(O_CLASS))) {
           place = true
-          placeMark(cell, O_CLASS)
+          cell.classList.add(O_CLASS)
           cell.removeEventListener('click', handleClick2)
           skip = true
         }
@@ -124,17 +104,16 @@ function handleClick2(e) {
           if(skip)
             return
           if(!cell.classList.contains(X_CLASS) && !cell.classList.contains(O_CLASS)) {
-            placeMark(cell, O_CLASS)
+            cell.classList.add(O_CLASS)
             cell.removeEventListener('click', handleClick2)
             skip = true
           }
         })
       }
     }    
-    if (isDraw())
+    if (isDraw() && draw)
       endGame(true)
     swapTurns()
-    setBoardHoverClass()
   }
 }
 
@@ -151,10 +130,6 @@ function isDraw() {
   return [...cellElements].every(cell => {
     return cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS)
   })
-}
-
-function placeMark(cell, currentClass) {
-  cell.classList.add(currentClass)
 }
 
 function swapTurns() {
