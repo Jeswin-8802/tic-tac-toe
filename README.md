@@ -1,7 +1,7 @@
 # Tic-Tac-Toe
  The classic Tic Tac Toe game written in JavaScript
 
-## For those of you new to Tic Tac Toe
+## For those of you who have no idea what Tic Tac Toe is
  Tic-Tac-Toe is a two-player game in which the players fill up nine empty rectangles in a table with either an `X` or an `O` when it is their turn. Once someone succeeds to line up their sign vertically, horizontally or diagonally without an interruption, that player wins.
  
 ### *How to Play*
@@ -9,7 +9,7 @@
  
  There is a multiplayer option as well as an option to play against the computer (*I bet you will find it very difficult to beat it* 🙂). 
  
- *Note:* **You make the first move as `X` against the computer.**
+ *Note:* **You make the first move as `X` against the computer (when payed in `Player vs Computer` mode).**
  
  ![Screenshot 2022-03-19 193310](https://user-images.githubusercontent.com/84562594/159124192-f9b23a0e-709a-4f88-a62c-d20555ebb471.png)
  
